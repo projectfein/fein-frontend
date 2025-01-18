@@ -1,0 +1,20 @@
+.btn {
+  font-family: 'SourceCodePro';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 1px 1px 0 0 var(--background-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--hover-background-color);
+  }
+
+  &:active:not(:disabled),
+  .group:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+  }
+}

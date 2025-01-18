@@ -1,33 +1,72 @@
-import React, { Children } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import { cn } from '~/utils/base';
+
+export enum ButtonVariant {
+  BLACK = 'black',
+  WHITE = 'white',
+}
+
+type DEFINE_BUTTON_STYLE = {
+  [key in ButtonVariant]: {
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
+    hoverBackgroundColor: string;
+  };
+};
+
+const DEFINE_BUTTON_STYLE: DEFINE_BUTTON_STYLE = {
+  [ButtonVariant.BLACK]: {
+    backgroundColor: '#000000',
+    borderColor: '#ffffff',
+    textColor: '#ffffff',
+    hoverBackgroundColor: '#1a1a1a',
+  },
+  [ButtonVariant.WHITE]: {
+    backgroundColor: '#ffffff',
+    borderColor: '#000000',
+    textColor: '#000000',
+    hoverBackgroundColor: '#cfcfcf',
+  },
+};
 
 interface ButtonProps
   extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   fullWidth?: boolean;
+  variant?: ButtonVariant;
+  className?: string;
+  disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, className, fullWidth, ...props }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className = '',
+  fullWidth = false,
+  variant = ButtonVariant.BLACK,
+  disabled = false,
+  ...props
+}) => {
+  const styled = {
+    '--background-color': DEFINE_BUTTON_STYLE[variant].backgroundColor,
+    '--border-color': DEFINE_BUTTON_STYLE[variant].borderColor,
+    '--text-color': DEFINE_BUTTON_STYLE[variant].textColor,
+    '--hover-background-color': DEFINE_BUTTON_STYLE[variant].hoverBackgroundColor,
+  } as React.CSSProperties;
+
   return (
     <button
       className={cn(
-        // not change
-        'group relative flex cursor-pointer items-center justify-center overflow-hidden',
-        // can change
-        'uppercase font-semibold gap-[4px] rounded-lg border-b-2 border-l-2 border-r-2 border-red-700 bg-gradient-to-tr from-red-600 to-red-500 px-4 py-2 text-white shadow-lg',
-        //transitions
-        'transition duration-100 ease-in-out',
-        //when active
-        'active:translate-y-0.5 active:border-red-600 active:shadow-none',
+        'btn group relative flex items-center gap-[4px] cursor-pointer',
         {
           'w-full': fullWidth,
+          'opacity-[0.32] cursor-not-allowed': disabled,
         },
         className
       )}
+      disabled={disabled}
+      style={{ ...styled, ...props.style }}
       {...props}
     >
-      {/* effect hover */}
-      <span className="absolute h-0 w-0 rounded-full bg-white opacity-10 transition-all duration-300 ease-out group-hover:h-[200%] group-hover:w-[200%]"></span>
       {children}
     </button>
   );
