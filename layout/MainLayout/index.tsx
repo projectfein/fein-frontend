@@ -52,7 +52,7 @@ export default function MainLayout({ children, title = '', currentPage = '', met
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
 
-      <div className="min-h-screen flex flex-col relative">
+      <div className="min-h-screen flex flex-col relative text-[#fff] bg-[#000]">
         <Header currentPage={currentPage} />
         <main className="flex-1">{children}</main>
         <Footer />
