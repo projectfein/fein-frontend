@@ -12,11 +12,14 @@
     "svgr": "svgr --typescript --icon 20px --title-prop --svg-props role={'icon-default'} -d public/assets/svgs -- public/imgs/icons"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@googlemaps/react-wrapper": "^1.1.31",
     "@hookform/resolvers": "^2.8.8",
+    "@mui/material": "^6.4.0",
     "@react-google-maps/api": "^2.10.2",
     "@reduxjs/toolkit": "^1.5.1",
     "@svgr/cli": "^6.5.1",
