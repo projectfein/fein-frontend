@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url(./IBMPlexMono-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url(./IBMPlexMono-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url(./IBMPlexMono-SemiBold.ttf);
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url(./IBMPlexMono-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
