@@ -18,7 +18,7 @@ export default function Footer() {
     });
   };
   return (
-    <footer className="w-full flex-col items-end flex mt-auto">
+    <footer className="w-full max-w-[650px] flex-col items-end flex mt-auto mx-auto pb-[24px]">
       <Image
         src="/imgs/cat-decor.svg"
         alt="decor"
