@@ -63,6 +63,7 @@ module.exports = (phase) => {
 
       return config;
     },
+    transpilePackages: ['react-tweet'],
   });
 
   return {
