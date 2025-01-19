@@ -3,6 +3,7 @@ import { ButtonVariant } from '~/components/primitives/Button';
 import Image from 'next/image';
 import Button from '~/components/primitives/Button';
 import CopyIcon from '../icons/CopyIcon';
+import { cn } from '~/utils/base';
 
 const LIST_LINK_BUTTON = [
   {
@@ -72,24 +73,22 @@ export default function Footer() {
         </Button>
       </div>
       <div className="w-full flex items-center justify-center gap-[16px] mt-[24px] text-[#ffffff] text-[18px] leading-none font-[600]">
-        {LIST_LINK_BUTTON.map((item) => (
-          <>
+        {LIST_LINK_BUTTON.map((item, index) => (
+          <div key={item.type} className="flex items-center gap-[16px]">
             <div
-              key={item.type}
               onClick={() => handleOpenLink(item.type)}
               className="underline cursor-pointer select-none hover:text-[#a7a7a7]"
             >
               {item.label}
             </div>
             <Image
-              key={`${item.type}-plus`}
               src="/imgs/icons-spec/plus-icon.svg"
               alt="plus"
               width={6}
               height={6}
-              className="w-[6px] h-auto object-contain last:hidden"
+              className={cn('w-[6px] h-auto object-contain', { hidden: index !== LIST_LINK_BUTTON.length - 1 })}
             />
-          </>
+          </div>
         ))}
       </div>
     </footer>
