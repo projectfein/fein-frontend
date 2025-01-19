@@ -7,7 +7,7 @@ export default function Header({ currentPage = '' }) {
   const handleConnectWallet = () => {};
 
   return (
-    <header className="w-full flex items-start justify-between">
+    <header className="w-full flex items-start justify-between pt-[16px] px-[24px]">
       <div className="flex-1">
         <Button
           variant={ButtonVariant.WHITE}
