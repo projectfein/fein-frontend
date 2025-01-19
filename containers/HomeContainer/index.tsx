@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tweet } from '~/components/common/TweetWrapper';
 
 function HomeContainer() {
   return (
@@ -33,6 +34,9 @@ function HomeContainer() {
               <p className="text-[#00000052]">3d:24h:52p:28s</p>
             </div>
             <p className="text-[#000000] text-[18px] leading-none font-[700]">14.890 $FEIN</p>
+          </div>
+          <div data-theme="light" className="w-full">
+            <Tweet id="1869454322402308459" />
           </div>
         </div>
       </div>
