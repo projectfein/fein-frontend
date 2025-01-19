@@ -4,6 +4,25 @@ import Image from 'next/image';
 import Button from '~/components/primitives/Button';
 import CopyIcon from '../icons/CopyIcon';
 
+const LIST_LINK_BUTTON = [
+  {
+    label: 'twitter/x',
+    type: 'twitter',
+  },
+  {
+    label: 'dexsceener',
+    type: 'dexsceener',
+  },
+  {
+    label: 'raydium',
+    type: 'raydium',
+  },
+  {
+    label: 'jupiter',
+    type: 'jupiter',
+  },
+];
+
 export default function Footer() {
   const contractAddress = '0x1234567890';
 
@@ -17,6 +36,19 @@ export default function Footer() {
       }, 3000);
     });
   };
+
+  const handleOpenLink = (type: string) => {
+    if (type === 'twitter') {
+      window.open('https://x.com/', '_blank');
+    } else if (type === 'dexsceener') {
+      window.open(`https://dexscreener.com/solana/${contractAddress}`, '_blank');
+    } else if (type === 'raydium') {
+      window.open(`https://raydium.io/swap/?inputMint=sol&outputMint=${contractAddress}`, '_blank');
+    } else if (type === 'jupiter') {
+      window.open(`https://jup.ag/swap/SOL-${contractAddress}`, '_blank');
+    }
+  };
+
   return (
     <footer className="w-full max-w-[650px] flex-col items-end flex mt-auto mx-auto pb-[24px]">
       <Image
@@ -38,6 +70,27 @@ export default function Footer() {
             </>
           )}
         </Button>
+      </div>
+      <div className="w-full flex items-center justify-center gap-[16px] mt-[24px] text-[#ffffff] text-[18px] leading-none font-[600]">
+        {LIST_LINK_BUTTON.map((item) => (
+          <>
+            <div
+              key={item.type}
+              onClick={() => handleOpenLink(item.type)}
+              className="underline cursor-pointer select-none hover:text-[#a7a7a7]"
+            >
+              {item.label}
+            </div>
+            <Image
+              key={`${item.type}-plus`}
+              src="/imgs/icons-spec/plus-icon.svg"
+              alt="plus"
+              width={6}
+              height={6}
+              className="w-[6px] h-auto object-contain last:hidden"
+            />
+          </>
+        ))}
       </div>
     </footer>
   );
