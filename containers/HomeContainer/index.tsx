@@ -1,4 +1,5 @@
 import React from 'react';
+import GameTutorial from '~/components/common/GameTutorial';
 import { Tweet } from '~/components/common/TweetWrapper';
 
 function HomeContainer() {
@@ -40,6 +41,7 @@ function HomeContainer() {
           </div>
         </div>
       </div>
+      <GameTutorial />
     </div>
   );
 }
