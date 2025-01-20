@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '~/components/primitives/Button';
 import { ButtonVariant } from '~/components/primitives/Button';
+import TransactionLog from './TransactionLog';
 
 const GameTutorial = () => {
   return (
@@ -50,6 +51,7 @@ const GameTutorial = () => {
           </p>
         </div>
       </div>
+      <TransactionLog />
     </div>
   );
 };
