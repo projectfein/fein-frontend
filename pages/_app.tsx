@@ -11,6 +11,7 @@ import GlobalProvider from '../context/GlobalContext/GlobalProvider';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { toast, Toaster, ToastBar } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
+import Web3Provider from '~/context/Web3Context/Web3Provider';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const setIsAnimating = useProgressStore((state) => {
@@ -42,17 +43,19 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   }, [router]);
   return (
     <SessionProvider session={session}>
-      <QueryClientProvider client={queryClient}>
-        <Progress isAnimating={isAnimating} />
-        <AnimatePresence>
-          <Toaster />
-        </AnimatePresence>
-        <GlobalProvider>
-          <ModalProvider>
-            <Component {...pageProps} />
-          </ModalProvider>
-        </GlobalProvider>
-      </QueryClientProvider>
+      <Web3Provider>
+        <QueryClientProvider client={queryClient}>
+          <Progress isAnimating={isAnimating} />
+          <AnimatePresence>
+            <Toaster />
+          </AnimatePresence>
+          <GlobalProvider>
+            <ModalProvider>
+              <Component {...pageProps} />
+            </ModalProvider>
+          </GlobalProvider>
+        </QueryClientProvider>
+      </Web3Provider>
     </SessionProvider>
   );
 }
