@@ -4,10 +4,16 @@ import { ButtonVariant } from '~/components/primitives/Button';
 import Button from '~/components/primitives/Button';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import PlusIcon from '../icons/PlusIcon';
+import MinusIcon from '../icons/MinusIcon';
+import CarretDownIcon from '../icons/CarretDownIcon';
+import ProfileDropdown from '../ProfileDropdown';
 
 export default function Header({ currentPage = '' }) {
   const { setVisible } = useWalletModal();
   const { publicKey, connected } = useWallet();
+
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const handleConnectWallet = () => {
     setVisible(true);
@@ -40,13 +46,42 @@ export default function Header({ currentPage = '' }) {
       </div>
       <Image src="/imgs/logo.png" alt="logo" width={211} height={148} className="w-[211px] h-auto object-contain" />
       <div className="flex-1 flex justify-end">
-        <Button
-          variant={ButtonVariant.WHITE}
-          className="px-[16px] py-[10px] text-[14px] leading-[1.2] font-[600]"
-          onClick={handleConnectWallet}
-        >
-          Connect Wallet
-        </Button>
+        {!connected ? (
+          <Button
+            variant={ButtonVariant.WHITE}
+            className="px-[16px] py-[10px] text-[14px] leading-[1.2] font-[600]"
+            onClick={handleConnectWallet}
+          >
+            Connect Wallet
+          </Button>
+        ) : (
+          <div className="w-max h-[40px] flex items-center gap-[12px] relative">
+            <div className="w-max h-full flex border-[1px] border-solid border-[#ffffff]">
+              <div className="h-full flex items-center gap-[6px] px-[10px]">
+                <p className="font-ibm-plex-mono text-[#ffffff] text-[12px] leading-none font-[500]">12.88</p>
+                <div className="w-[16px] aspect-square rounded-full bg-[#ffffff]" />
+              </div>
+              <div className="w-[1px] h-full bg-[#ffffff]" />
+              <div className="group px-[9px] flex items-center justify-center cursor-pointer hover:bg-[#ffffff]">
+                <PlusIcon className="!w-[20px] !h-[20px] text-[#ffffff] group-hover:text-[#000000]" />
+              </div>
+              <div className="w-[1px] h-full bg-[#ffffff]" />
+              <div className="group px-[9px] flex items-center justify-center cursor-pointer hover:bg-[#ffffff]">
+                <MinusIcon className="!w-[20px] !h-[20px] text-[#ffffff] group-hover:text-[#000000]" />
+              </div>
+            </div>
+            <div
+              onClick={() => setIsProfileDropdownOpen((prev) => !prev)}
+              className="group w-max h-full flex items-center gap-[4px] px-[8px] border-[1px] border-solid border-[#ffffff] cursor-pointer select-none hover:bg-[#ffffff]"
+            >
+              <p className="font-ibm-plex-mono text-[#ffffff] text-[12px] leading-none font-[500] group-hover:text-[#000000]">
+                {publicKey?.toBase58() || ''}
+              </p>
+              <CarretDownIcon className="!w-[24px] !h-[24px] text-[#ffffff] group-hover:text-[#000000]" />
+            </div>
+            {isProfileDropdownOpen && <ProfileDropdown closeDropdown={() => setIsProfileDropdownOpen(false)} />}
+          </div>
+        )}
       </div>
     </header>
   );
