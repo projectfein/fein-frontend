@@ -8,6 +8,7 @@ import PlusIcon from '../icons/PlusIcon';
 import MinusIcon from '../icons/MinusIcon';
 import CarretDownIcon from '../icons/CarretDownIcon';
 import ProfileDropdown from '../ProfileDropdown';
+import { shortAddress } from '~/utils/base';
 
 export default function Header({ currentPage = '' }) {
   const { setVisible } = useWalletModal();
@@ -75,7 +76,7 @@ export default function Header({ currentPage = '' }) {
               className="group w-max h-full flex items-center gap-[4px] px-[8px] border-[1px] border-solid border-[#ffffff] cursor-pointer select-none hover:bg-[#ffffff]"
             >
               <p className="font-ibm-plex-mono text-[#ffffff] text-[12px] leading-none font-[500] group-hover:text-[#000000]">
-                {publicKey?.toBase58() || ''}
+                {shortAddress(publicKey?.toBase58() || '')}
               </p>
               <CarretDownIcon className="!w-[24px] !h-[24px] text-[#ffffff] group-hover:text-[#000000]" />
             </div>
