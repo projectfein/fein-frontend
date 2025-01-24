@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { ButtonVariant } from '~/components/primitives/Button';
 import Button from '~/components/primitives/Button';
