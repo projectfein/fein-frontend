@@ -2,9 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import { ButtonVariant } from '~/components/primitives/Button';
 import Button from '~/components/primitives/Button';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 
 export default function Header({ currentPage = '' }) {
-  const handleConnectWallet = () => {};
+  const { setVisible } = useWalletModal();
+  const { publicKey, connected } = useWallet();
+
+  const handleConnectWallet = () => {
+    setVisible(true);
+  };
 
   return (
     <header className="w-full flex items-start justify-between pt-[16px] px-[24px]">
