@@ -29,3 +29,11 @@ export function debounce(fn: any, delay = 500) {
     }, delay);
   };
 }
+
+// Short Address
+export function shortAddress(address: string, numberOfInits = 6, numberOfLast = 6) {
+  if (address && address.length > numberOfInits && address.length - numberOfLast > 0) {
+    return `${address.slice(0, numberOfInits)}...${address.slice(address.length - numberOfLast)}`;
+  }
+  return '';
+}
